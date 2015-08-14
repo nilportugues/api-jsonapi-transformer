@@ -1,5 +1,7 @@
 # API Transformer
 
+[![Join the chat at https://gitter.im/nilportugues/api-transformer](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nilportugues/api-transformer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status]
 (https://travis-ci.org/nilportugues/api-transformer.svg)]
 (https://travis-ci.org/nilportugues/api-transformer) [![Coverage Status](https://coveralls.io/repos/nilportugues/api-transformer/badge.svg?branch=master&service=github)](https://coveralls.io/github/nilportugues/api-transformer?branch=master) [![Scrutinizer Code Quality]

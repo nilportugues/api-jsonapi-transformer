@@ -25,6 +25,10 @@ class Mapping
     /**
      * @var array
      */
+    private $requiredProperties = [];
+    /**
+     * @var array
+     */
     private $hiddenProperties = [];
     /**
      * @var array
@@ -186,6 +190,11 @@ class Mapping
         $this->properties = $properties;
     }
 
+    public function setRequiredProperties(array $properties)
+    {
+        $this->requiredProperties = $properties;
+    }
+
     /**
      * @return array
      */
@@ -215,6 +224,11 @@ class Mapping
     public function getAliasedProperties()
     {
         return $this->aliasedProperties;
+    }
+
+    public function getRequiredProperties()
+    {
+        return $this->requiredProperties;
     }
 
     /**

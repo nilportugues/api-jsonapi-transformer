@@ -29,6 +29,7 @@ class MappingFactory
     const CURIES_KEY = 'curies';
     const RELATIONSHIPS_KEY = 'relationships';
     const SELF_KEY = 'self';
+    const REQUIRED_PROPERTIES_KEY = 'required_properties';
 
     /**
      * @var array
@@ -61,6 +62,12 @@ class MappingFactory
             );
         }
 
+        if(method_exists($instance, 'getRequiredProperties')){
+            $requiredProperties = $instance->getRequiredProperties();
+        } else {
+            $requiredProperties = [];
+        }
+
         $mappedClass = [
             static::CLASS_KEY => $instance->getClass(),
             static::ALIAS_KEY => $instance->getAlias(),
@@ -68,6 +75,7 @@ class MappingFactory
             static::HIDE_PROPERTIES_KEY => $instance->getHideProperties(),
             static::ID_PROPERTIES_KEY => $instance->getIdProperties(),
             static::URLS_KEY => $instance->getUrls(),
+            static::REQUIRED_PROPERTIES_KEY => $requiredProperties
         ];
 
         if (\in_array(HalMapping::class, \class_implements($instance, true))) {
@@ -100,6 +108,7 @@ class MappingFactory
         static::setAliasedProperties($mappedClass, $mapping, $className);
         static::setHideProperties($mappedClass, $mapping, $className);
         static::setRelationships($mappedClass, $mapping, $className);
+        static::setRequiredProperties($mappedClass, $mapping);
         static::setCuries($mappedClass, $mapping);
         static::setProperties($mapping, $className);
 
@@ -285,6 +294,15 @@ class MappingFactory
     protected static function setProperties(Mapping $mapping, $className)
     {
         $mapping->setProperties(static::getClassProperties($className));
+    }
+
+    /**
+     * @param array $mappedClass
+     * @param Mapping $mapping
+     */
+    protected static function setRequiredProperties(array &$mappedClass, Mapping $mapping)
+    {
+        $mapping->setRequiredProperties($mappedClass[static::REQUIRED_PROPERTIES_KEY]);
     }
 
     /**
